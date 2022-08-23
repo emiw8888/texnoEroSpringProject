@@ -1,4 +1,4 @@
-//package com.example.texnoeraspringproject.repository;
+//package com.example.texnoeraspringproject.dao.repository;
 //
 //import com.example.texnoeraspringproject.dao.DeletedBooksEntity;
 //import org.springframework.data.repository.CrudRepository;

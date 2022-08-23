@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create lessons table
+      author: Emil Cahangirli
+      changes:
+        - createTable:
+            tableName: lessons
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  remarks: id of lesson
+              - column:
+                  name: name
+                  type: varchar(64)
+                  remarks: name of lesson
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValue: now()
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_lessons_to_books
+                    references: books(id)
+                    nullable: false
+                  remarks: id of book which provide this lesson
+
+            remarks: Table to store information about lessons
