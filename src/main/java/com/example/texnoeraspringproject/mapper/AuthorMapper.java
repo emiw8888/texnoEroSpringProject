@@ -2,21 +2,18 @@ package com.example.texnoeraspringproject.mapper;
 
 
 import com.example.texnoeraspringproject.dao.entity.AuthorEntity;
-import com.example.texnoeraspringproject.dto.AuthorDto;
+import com.example.texnoeraspringproject.model.dto.AuthorDto;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 
-public class AuthorMapper {
-    public static AuthorEntity mapToEntity(AuthorDto authorDto){
-        return AuthorEntity.builder()
-                .id(authorDto.getId())
-                .fullName(authorDto.getFullName())
-                .createdAt(authorDto.getCreatedAt())
-                .build();
-    }
-    public static AuthorDto mapToDto(AuthorEntity authorEntity){
-        return AuthorDto.builder()
-                .fullName(authorEntity.getFullName())
-                .createdAt(authorEntity.getCreatedAt())
-                .build();
-    }
+@Mapper
+public abstract class AuthorMapper {
+    public static AuthorMapper INSTANCE = Mappers.getMapper(AuthorMapper.class);
+
+//    @Mapping(target = "id",source = "id")
+    public abstract AuthorEntity mapToEntity(AuthorDto authorDto);
+
+    public abstract  AuthorDto mapToDto(AuthorEntity authorEntity);
 }

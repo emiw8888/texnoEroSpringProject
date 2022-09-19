@@ -1,28 +1,17 @@
 package com.example.texnoeraspringproject.mapper;
 
 import com.example.texnoeraspringproject.dao.entity.LessonEntity;
-import com.example.texnoeraspringproject.dto.LessonDto;
+import com.example.texnoeraspringproject.model.dto.LessonDto;;
+import org.mapstruct.Mapper;
+import org.mapstruct.factory.Mappers;
 
-public class LessonMapper {
-    public static LessonEntity mapToEntity(LessonDto lessonDto){
-        return LessonEntity.builder()
-                .id(lessonDto.getId())
-                .book(BookMapper.mapToEntity(lessonDto.getBook()))
-                .createdAt(lessonDto.getCreatedAt())
-                .name(lessonDto.getName())
-                .build();
-    }
-    public static LessonDto mapToDto(LessonEntity lessonEntity){
-        return LessonDto.builder()
-                .book(BookMapper.mapToDto(lessonEntity.getBook()))
-                .createdAt(lessonEntity.getCreatedAt())
-                .name(lessonEntity.getName())
-                .build();
-    }
-    public static LessonDto mapToDtoWithoutBook(LessonEntity lessonEntity){
-        return LessonDto.builder()
-                .createdAt(lessonEntity.getCreatedAt())
-                .name(lessonEntity.getName())
-                .build();
-    }
+
+@Mapper
+public abstract class LessonMapper {
+    public static LessonMapper INSTANCE = Mappers.getMapper(LessonMapper.class);
+
+
+    public abstract LessonEntity mapToEntity(LessonDto lessonDto);
+
+    public abstract LessonDto mapToDto(LessonEntity lessonEntity);
 }

@@ -1,8 +1,7 @@
 package com.example.texnoeraspringproject.service;
 
-import com.example.texnoeraspringproject.dao.entity.BookEntity;
-import com.example.texnoeraspringproject.dao.entity.LessonEntity;
-import com.example.texnoeraspringproject.dto.LessonDto;
+
+import com.example.texnoeraspringproject.model.dto.LessonDto;
 import com.example.texnoeraspringproject.mapper.LessonMapper;
 import com.example.texnoeraspringproject.dao.repository.BookRepository;
 import com.example.texnoeraspringproject.dao.repository.LessonRepository;
@@ -24,11 +23,11 @@ public class LessonService  {
     public List<LessonDto> getAllLessons() {
         return lessonRepository.findAll()
                 .stream()
-                .map(LessonMapper::mapToDto)
+                .map(LessonMapper.INSTANCE::mapToDto)
                 .collect(Collectors.toList());
     }
 
     public void saveLesson(LessonDto lessonDto) {
-        lessonRepository.save(LessonMapper.mapToEntity(lessonDto));
+        lessonRepository.save(LessonMapper.INSTANCE.mapToEntity(lessonDto));
     }
 }

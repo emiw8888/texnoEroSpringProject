@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create shedlock tables
+      author: Emil Cahangirli
+      changes:
+        - createTable:
+            tableName: shedlock
+            columns:
+              - column:
+                  name: name
+                  type: varchar(64)
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                  remarks: name of shedlock
+              - column:
+                  name: lock_until
+                  type: timestamp
+                  remarks: Showing when our scheduler will must lock
+              - column:
+                  name: locked_at
+                  type: timestamp
+                  remarks: When the scheduler is locked
+              - column:
+                  name: locked_by
+                  type: varchar(256)
+                  remarks: By whom this scheduler is locked
+
+
+            remarks: Table to store information about authors

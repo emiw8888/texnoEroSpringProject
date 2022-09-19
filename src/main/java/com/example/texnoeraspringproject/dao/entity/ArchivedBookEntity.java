@@ -16,8 +16,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @Builder
-@Table(name = "books")
-public class BookEntity {
+@Table(name = "books_archive")
+public class ArchivedBookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,11 +29,19 @@ public class BookEntity {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    public static ArchivedBookEntity of(BookEntity book){
+        return ArchivedBookEntity.builder()
+                .id(book.getId())
+                .createdAt(book.getCreatedAt())
+                .name(book.getName())
+                .price(book.getPrice())
+                .build();
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        BookEntity that = (BookEntity) o;
+        ArchivedBookEntity that = (ArchivedBookEntity) o;
         return id != null && Objects.equals(id, that.id);
     }
 

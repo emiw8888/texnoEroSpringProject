@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create books archive table
+      author: Emil Cahangirli
+      changes:
+        - createTable:
+            tableName: books_archive
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                  remarks: id of book
+              - column:
+                  name: name
+                  type: varchar(64)
+                  remarks: name of book
+              - column:
+                  name: price
+                  type: numeric(10,2)
+                  remarks: price of book
+              - column:
+                  name: created_at
+                  type: timestamp
+                  remarks: When the record created
+              - column:
+                  name: changed_at
+                  type: timestamp
+                  defaultValue: now()
+                  remarks: When the record created
+            remarks: Table to store information about books
